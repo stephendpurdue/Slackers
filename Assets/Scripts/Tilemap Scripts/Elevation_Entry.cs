@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Elevation_Entry : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Collider2D[] mountainColliders;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if(collision.gameObject.tag == "Player") // Checks if entity entering the collider is the Player.
+        foreach (Collider2D mountain in mountainColliders)
+        {
+            mountain.enabled = false;
+        }
+
+        collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 15;
     }
 }
