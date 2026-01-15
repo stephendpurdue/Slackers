@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy_Movement : MonoBehaviour
 {
     public float speed;
+    private bool isChasing;
     
     private Rigidbody2D rb;
     public Transform player;
@@ -18,7 +19,26 @@ public class Enemy_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
-        rb.velocity = direction * speed;
+        if(isChasing == true)
+        {
+            Vector2 direction = (player.position - transform.position).normalized;
+            rb.velocity = direction * speed;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            isChasing = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {   
+        if(collision.gameObject.tag == "Player")
+        {
+            isChasing = false;
+        }
     }
 }
