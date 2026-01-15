@@ -10,11 +10,14 @@ public class Enemy_Movement : MonoBehaviour
     
     private Rigidbody2D rb;
     private Transform player;
+    private Animator anim;
+    public EnemyState enemyState;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D component missing on " + gameObject.name);
@@ -26,8 +29,8 @@ public class Enemy_Movement : MonoBehaviour
     {
         if(isChasing && player != null)
         {
-            if(player.position.x > transform.position.x && facingDirection == -1 || // Flips the Enemy left or right based on player vicinity.
-                player.position.x < transform.position.x && facingDirection == 1 )
+            if(player.position.x > transform.position.x && facingDirection == 1 || // Flips the Enemy left or right based on player vicinity.
+                player.position.x < transform.position.x && facingDirection == -1 )
             {
                 Flip();
             }
@@ -39,7 +42,7 @@ public class Enemy_Movement : MonoBehaviour
     void Flip()
     {
         facingDirection *= -1;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScaly.y, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -62,3 +65,8 @@ public class Enemy_Movement : MonoBehaviour
     }
 }
 
+public enum EnemyState
+{
+    Idle,
+    Chasing,
+}
