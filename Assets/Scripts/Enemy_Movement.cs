@@ -14,12 +14,16 @@ public class Enemy_Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody2D component missing on " + gameObject.name);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    // FixedUpdate is called at fixed intervals for physics
+    void FixedUpdate()
     {
-        if(isChasing == true)
+        if(isChasing && player != null)
         {
             Vector2 direction = (player.position - transform.position).normalized;
             rb.velocity = direction * speed;
@@ -28,22 +32,20 @@ public class Enemy_Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.CompareTag("Player"))
         {
-            if(player == null)
-            {
-                player = collision.transform;
-            }
+            player = collision.transform;
             isChasing = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {   
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.CompareTag("Player"))
         {
             rb.velocity = Vector2.zero;
             isChasing = false;
+            player = null;
         }
     }
 }
