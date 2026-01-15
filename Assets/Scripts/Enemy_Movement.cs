@@ -8,7 +8,7 @@ public class Enemy_Movement : MonoBehaviour
     private bool isChasing;
     
     private Rigidbody2D rb;
-    public Transform player;
+    private Transform player;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,10 @@ public class Enemy_Movement : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            if(player == null)
+            {
+                player = collision.transform;
+            }
             isChasing = true;
         }
     }
@@ -38,7 +42,9 @@ public class Enemy_Movement : MonoBehaviour
     {   
         if(collision.gameObject.tag == "Player")
         {
+            rb.velocity = Vector2.zero;
             isChasing = false;
         }
     }
 }
+
