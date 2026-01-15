@@ -29,13 +29,23 @@ public class Enemy_Movement : MonoBehaviour
     // FixedUpdate is called at fixed intervals for physics
     void FixedUpdate()
     {
-        if(enemyState == EnemyState.Chasing)
+        if(enemyState == EnemyState.Chasing && player != null)
         {
-            if(player.position.x > transform.position.x && facingDirection == 1 || // Flips the Enemy left or right based on player vicinity.
-                player.position.x < transform.position.x && facingDirection == -1 )
+            float horizontalDistance = player.position.x - transform.position.x;
+            
+            // Only flip if there's a significant horizontal distance (dead zone to prevent jittering)
+            if(Mathf.Abs(horizontalDistance) > 0.1f)
             {
-                Flip();
+                if(horizontalDistance > 0 && facingDirection == -1) // Player is to the right, enemy facing left
+                {
+                    Flip();
+                }
+                else if(horizontalDistance < 0 && facingDirection == 1) // Player is to the left, enemy facing right
+                {
+                    Flip();
+                }
             }
+            
             Vector2 direction = (player.position - transform.position).normalized;
             rb.velocity = direction * speed;
         }
@@ -52,9 +62,8 @@ public class Enemy_Movement : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             player = collision.transform;
-            isChasing = true;
+            ChangeState(EnemyState.Chasing);
         }
-        ChangeState(EnemyState.Chasing);
     }
 
     private void OnTriggerExit2D(Collider2D collision) 
@@ -69,20 +78,26 @@ public class Enemy_Movement : MonoBehaviour
 
     void ChangeState(EnemyState newState)
     {
-        // Exit the current animation
-        if(enemyState == EnemyState.Idle)
-            anim.SetBool("isIdle", false);
-        else if (enemyState == EnemyState.Chasing)
-            anim.SetBool("isChasing", false);
+        if (anim != null)
+        {
+            // Exit the current animation
+            if(enemyState == EnemyState.Idle)
+                anim.SetBool("isIdle", false);
+            else if (enemyState == EnemyState.Chasing)
+                anim.SetBool("isChasing", false);
+        }
 
         // Update our current state
         enemyState = newState;
 
-        // Update the new animation
-        if(enemyState == EnemyState.Idle)
-            anim.SetBool("isIdle", true);
-        else if (enemyState == EnemyState.Chasing)
-            anim.SetBool("isChasing", true);
+        if (anim != null)
+        {
+            // Update the new animation
+            if(enemyState == EnemyState.Idle)
+                anim.SetBool("isIdle", true);
+            else if (enemyState == EnemyState.Chasing)
+                anim.SetBool("isChasing", true);
+        }
     }
 }
 
