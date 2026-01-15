@@ -11,11 +11,12 @@ public class Enemy_Movement : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
     private Animator anim;
-    public EnemyState enemyState;
+    private EnemyState enemyState;
 
     // Start is called before the first frame update
     void Start()
     {
+        ChangeState(EnemyState.Idle); // Changes state to Idle to begin game.
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         if (rb == null)
@@ -62,6 +63,14 @@ public class Enemy_Movement : MonoBehaviour
             isChasing = false;
             player = null;
         }
+    }
+
+    void ChangeState(EnemyState newState)
+    {
+        if(enemyState == EnemyState.Idle)
+            anim.SetBool("isIdle", false);
+        else if (enemyState == EnemyState.Chasing)
+            anim.SetBool("isChasing", false);
     }
 }
 

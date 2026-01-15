@@ -31630,7 +31630,7 @@ Tilemap:
       - {fileID: -964880607, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
       - {fileID: 1678721096, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
       - {fileID: -408588064, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: -3, z: 0}
@@ -31690,7 +31690,7 @@ Tilemap:
       - {fileID: -964880607, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
       - {fileID: 1678721096, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
       - {fileID: -408588064, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -19, y: -2, z: 0}
@@ -31810,7 +31810,7 @@ Tilemap:
       - {fileID: -964880607, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
       - {fileID: 1678721096, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
       - {fileID: -408588064, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -33, y: 3, z: 0}
@@ -32470,7 +32470,7 @@ Tilemap:
       - {fileID: -9849509, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
       - {fileID: -148338434, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
       - {fileID: 54599730, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -23, y: 31, z: 0}
@@ -32725,7 +32725,7 @@ Tilemap:
       - {fileID: 2091187645, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
       - {fileID: -1341967635, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
       - {fileID: 630389729, guid: e7ef86dbc8843cc4cba88e157570651d, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -12, y: 35, z: 0}
@@ -41910,8 +41910,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.925506, y: 0.09379673}
-  m_Size: {x: 9.762481, y: 9.762481}
+  m_Offset: {x: -3.621426, y: -0.17649555}
+  m_Size: {x: 11.226567, y: 11.22657}
   m_Direction: 0
 --- !u!50 &1618672743
 Rigidbody2D:
