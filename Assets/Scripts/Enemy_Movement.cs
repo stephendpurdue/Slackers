@@ -32,7 +32,7 @@ public class Enemy_Movement : MonoBehaviour
         if(enemyState == EnemyState.Chasing && player != null)
         {
             float horizontalDistance = player.position.x - transform.position.x;
-            
+         
             // Only flip if there's a significant horizontal distance (dead zone to prevent jittering)
             if(Mathf.Abs(horizontalDistance) > 0.1f)
             {
