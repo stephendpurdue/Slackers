@@ -99,6 +99,21 @@ public class Enemy_Movement : MonoBehaviour
                 anim.SetBool("isChasing", true);
         }
     }
+
+    public void ForceStopChase()
+{
+    // Stop movement
+    if (rb != null)
+        rb.velocity = Vector2.zero;
+    
+    // Clear player reference
+    player = null;
+    
+    // Return to idle state
+    ChangeState(EnemyState.Idle);
+    
+    Debug.Log($"{gameObject.name} stopped chasing due to disguise change");
+}
 }
 
 public enum EnemyState
